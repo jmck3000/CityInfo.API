@@ -11,6 +11,12 @@ namespace CityInfo.API.Controllers
     [Route("api/cities")]
     public class PointsOfInterestController : Controller
     {
+
+        /// <summary>
+        /// Returns all Points Of Interest for a City.
+        /// </summary>
+        /// <param name="cityId">City Id</param> 
+        /// <example>GET api/cities/1/pointsofinterest</example> 
         [HttpGet("{cityId}/pointsofinterest")]
         public IActionResult GetPointsOfInterest(int cityId)
         {
@@ -24,6 +30,13 @@ namespace CityInfo.API.Controllers
             return Ok(city.PointsOfInterest);
         }
 
+
+        /// <summary>
+        /// Returns one PointOfInterest for one City.
+        /// </summary>
+        /// <param name="cityId">City Id</param>
+        /// <param name="id">PointOfInterest Id</param> 
+        /// <example>GET api/cities/1/pointsofinterest/1</example> 
         [HttpGet("{cityId}/pointsofinterest/{id}", Name = "GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int id)
         {
@@ -43,6 +56,13 @@ namespace CityInfo.API.Controllers
             return Ok(pointOfInterest);
         }
 
+
+        /// <summary>
+        /// Insert PointOfInterest for one City.
+        /// </summary>
+        /// <param name="cityId">City Id</param>
+        /// <param name="pointOfInterest">PointOfInterestForCreationDetail model</param> 
+        /// <example>POST api/cities/3/pointsofinterest</example> 
         [HttpPost("{cityId}/pointsofinterest")]
         public IActionResult CreatePointOfInterest(int cityId,
             [FromBody] PointOfInterestForCreationDetail pointOfInterest)
@@ -85,6 +105,14 @@ namespace CityInfo.API.Controllers
                 new { cityId, id = finalPointOfInterest.Id }, finalPointOfInterest);
         }
 
+
+        /// <summary>
+        /// Update PointOfInterest for one City.
+        /// </summary>
+        /// <param name="cityId">City Id</param>
+        /// <param name="id">PointOfInterest Id</param> 
+        /// <param name="pointOfInterest">PointOfInterestForUpdateDetail model</param> 
+        /// <example>PUT api/cities/1/pointsofinterest/1</example> 
         [HttpPut("{cityId}/pointsofinterest/{id}")]
         public IActionResult UpdatePointOfInterest(int cityId, int id,
             [FromBody] PointOfInterestForUpdateDetail pointOfInterest)
@@ -125,11 +153,19 @@ namespace CityInfo.API.Controllers
 
         }
 
+
+        /// <summary>
+        /// Update PointOfInterest for one City.
+        /// </summary>
+        /// <param name="cityId">City Id</param>
+        /// <param name="id">PointOfInterest Id</param> 
+        /// <param name="pointOfInterest">PointOfInterestForUpdateDetail model</param> 
+        /// <example>PATCH api/cities/1/pointsofinterest/1</example> 
         [HttpPatch("{cityId}/pointsofinterest/{id}")]
         public IActionResult PartiallyUpdatePointOfInterest(int cityId, int id,
             [FromBody] JsonPatchDocument<PointOfInterestForUpdateDetail> patchDoc)
         {
-            if(patchDoc == null)
+            if (patchDoc == null)
             {
                 return BadRequest();
             }
@@ -156,7 +192,7 @@ namespace CityInfo.API.Controllers
 
             patchDoc.ApplyTo(pointOfInterestToPatch, ModelState);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -179,6 +215,33 @@ namespace CityInfo.API.Controllers
             return NoContent();
 
         }
+
+        /// <summary>
+        /// Delete a PointOfInterest for one City.
+        /// </summary>
+        /// <param name="cityId">City Id</param>
+        /// <param name="id">PointOfInterest Id</param> 
+        /// <example>PATCH api/cities/1/pointsofinterest/1</example> 
+        [HttpDelete("{cityId}/pointsofinterest/{id}")]
+        public IActionResult DeletePointOfInterest(int cityId, int id)
+        {
+
+            var city = CitiesDataStrore.Current.Cities.FirstOrDefault(citys => citys.Id == cityId);
+            if (city == null)
+            {
+                return NotFound();
+            }
+
+            var pointOfInterestFromStore = city.PointsOfInterest.FirstOrDefault(point => point.Id == id);
+            if (pointOfInterestFromStore == null)
+            {
+                return NotFound();
+            }
+
+            city.PointsOfInterest.Remove(pointOfInterestFromStore);
+            return NoContent();
+        }
+
 
     }
 }
