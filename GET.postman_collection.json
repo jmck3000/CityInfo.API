@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "052d1f23-f1fd-45c4-9467-a4aa47f21765",
+		"name": "ASP.NET Core API - module 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Cities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET City",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Points of Interest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities/1/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Points of Interest (unexisting City)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities/4/pointsofinterest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"4",
+						"pointsofinterest"
+					]
+				},
+				"description": "Should return 404 NotFound"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Point of Interest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Point of Interest (unexisting City)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities/4/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"4",
+						"pointsofinterest",
+						"1"
+					]
+				},
+				"description": "Should return 404 NotFound"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Point of Interest (unexisting Point of Interest)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities/1/pointsofinterest/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"10"
+					]
+				},
+				"description": "Should return 404 NotFound"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Cities (XML)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:1028/api/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
