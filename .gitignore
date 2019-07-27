@@ -78,6 +78,45 @@ StyleCopReport.xml
 *.tmp
 *.tmp_proj
 *.log
+<<<<<<< HEAD
+=======
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Files built by Visual Studio #
+################################
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+>>>>>>> 48e74e9e724a805a204ff015dfad1244c0c94443
 *.vspscc
 *.vssscc
 .builds
@@ -85,6 +124,7 @@ StyleCopReport.xml
 *.svclog
 *.scc
 
+<<<<<<< HEAD
 # Chutzpah Test files
 _Chutzpah*
 
@@ -328,3 +368,47 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+=======
+# User-specific files
+################################
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2017 auto generated files
+################################
+Generated\ Files/
+
+# MSTest test Results
+################################
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUnit
+################################
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Build Results of an ATL Project
+################################
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Benchmark Results
+################################
+BenchmarkDotNet.Artifacts/
+
+# .NET Core
+################################
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# StyleCop
+################################
+StyleCopReport.xml
+>>>>>>> 48e74e9e724a805a204ff015dfad1244c0c94443

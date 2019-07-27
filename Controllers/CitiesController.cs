@@ -11,12 +11,21 @@ namespace CityInfo.API.Controllers
     public class CitiesController : Controller
     {
 
+        /// <summary>
+        /// Returns all Cities
+        /// </summary>
+        /// <example>GET api/cities</example> 
         [HttpGet()]
         public IActionResult GetCities()
         {
             return Ok(CitiesDataStrore.Current.Cities);
         }
 
+        /// <summary>
+        /// Returns a City by Id
+        /// </summary>
+        /// <param name="id">City Id</param> 
+        /// <example>GET api/cities/1</example> 
         [HttpGet("{id}")]
         public IActionResult GetCity(int id)
         {
