@@ -13,6 +13,8 @@ using NLog.Extensions.Logging;
 
 using Microsoft.Extensions.Configuration;
 using CityInfo.API.Services;
+using CityInfo.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityInfo.API
 {
@@ -46,6 +48,8 @@ namespace CityInfo.API
 #else
             services.AddTransient<IMailService, CloudMailService>();
 #endif
+            var connectionString = @"Server=(localdb)\mssqllocaldb;Database=CityInfoDB;Trusted_Connection=True;";
+            services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
 
         }
 
@@ -55,8 +59,8 @@ namespace CityInfo.API
             // No need to add these loggers in ASP.NET Core 2.0: the call to WebHost.CreateDefaultBuilder(args) 
             // in the Program class takes care of that.
 
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole();
+            //loggerFactory.AddDebug();
 
             //loggerFactory.AddProvider(new NLog.Extensions.Logging.NLogLoggerProvider());
             loggerFactory.AddNLog();
