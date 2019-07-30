@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace CityInfo.API.Services
 {
-    interface ICityInfoRepository
+    public interface ICityInfoRepository
     {
+
+        bool CityExists(int cityId);
 
         IEnumerable<City> GetCities();
 
         City GetCity(int cityId, bool includePointsOfInterest);
 
-        IEnumerable<PointOfInterest> GetPointOfInterestsForCity(int cityId);
+        IEnumerable<PointOfInterest> GetPointsOfInterestForCity(int cityId);
 
         PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId);
     }
