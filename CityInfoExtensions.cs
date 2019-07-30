@@ -32,7 +32,7 @@ namespace CityInfo.API
                         {
                             Name = "Empire State Building",
                             Description = "A 102-story skyscraper located in Midtown Manhattan."
-                        }
+                        } 
                     }
 
                 },
