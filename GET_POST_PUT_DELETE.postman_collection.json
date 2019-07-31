@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "052d1f23-f1fd-45c4-9467-a4aa47f21765",
-		"name": "ASP.NET Core API - module 2",
+		"_postman_id": "1be89427-30c5-4b4f-b74f-6996aaa5db30",
+		"name": "ASP.NET Core API - module 6",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -41,6 +41,33 @@
 						"api",
 						"cities",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET City with parameter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:1028/api/cities/1?includePointsOfInterest=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"1"
+					],
+					"query": [
+						{
+							"key": "includePointsOfInterest",
+							"value": "true"
+						}
 					]
 				}
 			},
@@ -163,17 +190,21 @@
 			"response": []
 		},
 		{
-			"name": "GET Cities (XML)",
+			"name": "POST Point of Interest",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
-						"key": "Accept",
-						"value": "application/xml"
+						"key": "Content-Type",
+						"value": "application/json"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Père Lachaise\",\n    \"description\": \"Famous cemetery where Jim Morrison and Oscar Wilde are buried.\"\n}"
+				},
 				"url": {
-					"raw": "http://localhost:1028/api/cities",
+					"raw": "http://localhost:1028/api/cities/3/pointsofinterest",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -181,7 +212,100 @@
 					"port": "1028",
 					"path": [
 						"api",
-						"cities"
+						"cities",
+						"3",
+						"pointsofinterest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Point of Interest",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Updated - Central Park\",\n    \"description\": \"Updated - The most visited urban park in the United States.\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:1028/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Point of Interest (update multiple)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n      \"op\": \"replace\",\n      \"path\": \"/name\",\n      \"value\": \"Updated through PATCH - Central Park\"\n    },\n    {\n      \"op\": \"replace\",\n      \"path\": \"/description\",\n      \"value\": \"Updated through PATCH - Description\"\n    }\n]"
+				},
+				"url": {
+					"raw": "http://localhost:1028/api/cities/1/pointsofinterest/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"1",
+						"pointsofinterest",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Point of Interest",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:1028/api/cities/3/pointsofinterest/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1028",
+					"path": [
+						"api",
+						"cities",
+						"3",
+						"pointsofinterest",
+						"7"
 					]
 				}
 			},
