@@ -51,9 +51,12 @@ namespace CityInfo.API
             var connectionString = Startup.Configuration["connectionStrings:cityInfoDBConnectionString"];
             services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
 
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+       
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory,
             CityInfoContext cityInfoContext)
         {
@@ -73,17 +76,22 @@ namespace CityInfo.API
 
             app.UseStatusCodePages();
 
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDetail>();
+                cfg.CreateMap<Entities.City, Models.CityDetail>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestDetail>();
+                cfg.CreateMap<Models.PointOfInterestForCreationDetail, Entities.PointOfInterest>();
+                cfg.CreateMap<Models.PointOfInterestForUpdateDetail, Entities.PointOfInterest>();
+                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestForUpdateDetail>();
+            });
+
+   
+
             app.UseMvc();
 
-            //app.Run(async (context) =>
-            //{
-            //    throw new Exception("Example exception");
-            //});
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
+            
         }
     }
 }
