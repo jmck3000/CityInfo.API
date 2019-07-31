@@ -1,4 +1,5 @@
-﻿using CityInfo.API.Models;
+﻿using AutoMapper;
+using CityInfo.API.Models;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,17 +29,7 @@ namespace CityInfo.API.Controllers
         {
             var cityEntities = _cityInfoRepository.GetCities();
 
-            var results = new List<CityWithoutPointsOfInterestDetail>();
-
-            foreach (var cityEntity in cityEntities)
-            {
-                results.Add(new CityWithoutPointsOfInterestDetail
-                {
-                    Id = cityEntity.Id,
-                    Description = cityEntity.Description,
-                    Name = cityEntity.Name
-                });
-            }
+            var results = Mapper.Map<IEnumerable<CityWithoutPointsOfInterestDetail>>(cityEntities);
 
             return Ok(results);
         }
@@ -61,35 +52,11 @@ namespace CityInfo.API.Controllers
 
             if(includePointsOfInterest)
             {
-                var cityResult = new CityDetail()
-                {
-                    Id = city.Id,
-                    Name = city.Name,
-                    Description = city.Description
-                };
-
-                foreach(var poi in city.PointOfInterest)
-                {
-                    cityResult.PointsOfInterest.Add(
-                        new PointOfInterestDetail()
-                        {
-                            Id = poi.Id,
-                            Name = poi.Name,
-                            Description = poi.Description
-                        });
-                }
-
+                var cityResult = Mapper.Map<CityDetail>(city);
                 return Ok(cityResult);
+            } 
 
-            } //if(includePointsOfInterest)
-
-            var cityWithoutPointsOfInterestResult = new CityWithoutPointsOfInterestDetail()
-            {
-                Id = city.Id,
-                Description = city.Description,
-                Name = city.Name
-            };
-
+            var cityWithoutPointsOfInterestResult = Mapper.Map<CityWithoutPointsOfInterestDetail>(city);
             return Ok(cityWithoutPointsOfInterestResult);
         }
 

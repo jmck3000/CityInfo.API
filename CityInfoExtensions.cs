@@ -21,7 +21,7 @@ namespace CityInfo.API
                 {        
                     Name = "New York City",
                     Description = "The one with the big park.",
-                    PointOfInterest = new List<PointOfInterest>()
+                    PointsOfInterest = new List<PointOfInterest>()
                     {
                         new PointOfInterest()
                         {
@@ -40,7 +40,7 @@ namespace CityInfo.API
                 {
                     Name = "Antwerp",
                     Description = "The one with the cathedral that was never really finished.",
-                    PointOfInterest = new List<PointOfInterest>()
+                    PointsOfInterest = new List<PointOfInterest>()
                     {
                         new PointOfInterest()
                         {
@@ -58,7 +58,7 @@ namespace CityInfo.API
                 {
                     Name = "Paris",
                     Description = "The one with the big tower.",
-                     PointOfInterest = new List<PointOfInterest>()
+                     PointsOfInterest = new List<PointOfInterest>()
                     {
                         new PointOfInterest()
                         {
