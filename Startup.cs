@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using CityInfo.API.Services;
 using CityInfo.API.Entities;
 using Microsoft.EntityFrameworkCore;
+using CityInfo.API.ServiceManager;
 
 namespace CityInfo.API
 {
@@ -52,6 +53,7 @@ namespace CityInfo.API
             services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+            services.AddScoped<ICityInfoManager, CityInfoManager>();
 
         }
 

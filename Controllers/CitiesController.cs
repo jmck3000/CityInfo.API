@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CityInfo.API.Models;
+using CityInfo.API.ServiceManager;
 using CityInfo.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,10 +15,12 @@ namespace CityInfo.API.Controllers
     public class CitiesController : Controller
     {
         private ICityInfoRepository _cityInfoRepository;
+        private ICityInfoManager _cityInfoManager;
 
-        public CitiesController(ICityInfoRepository cityInfoRepository)
+        public CitiesController(ICityInfoRepository cityInfoRepository, ICityInfoManager cityInfoManager)
         {
             _cityInfoRepository = cityInfoRepository;
+            _cityInfoManager = cityInfoManager;
         }
 
         /// <summary>
@@ -27,9 +30,7 @@ namespace CityInfo.API.Controllers
         [HttpGet()]
         public IActionResult GetCities()
         {
-            var cityEntities = _cityInfoRepository.GetCities();
-
-            var results = Mapper.Map<IEnumerable<CityWithoutPointsOfInterestDetail>>(cityEntities);
+            var results = _cityInfoManager.GetCities();
 
             return Ok(results);
         }
