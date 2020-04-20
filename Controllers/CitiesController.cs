@@ -44,9 +44,11 @@ namespace CityInfo.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCity(int id, bool includePointsOfInterest = false)
         {
-            var city = _cityInfoRepository.GetCity(id, includePointsOfInterest);
+            //var city = _cityInfoRepository.GetCity(id, includePointsOfInterest);
 
-            if(city == null)
+            var city = _cityInfoManager.GetCity(id, includePointsOfInterest);
+
+            if (city == null)
             {
                 return NotFound();
             }

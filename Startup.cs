@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Serialization;
 using NLog.Extensions.Logging;
 
 using Microsoft.Extensions.Configuration;
@@ -16,6 +10,8 @@ using CityInfo.API.Services;
 using CityInfo.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using CityInfo.API.ServiceManager;
+using AutoMapper;
+using CityInfo.API.Mapping;
 
 namespace CityInfo.API
 {
@@ -44,6 +40,8 @@ namespace CityInfo.API
             //    }
             //});
 
+
+
 #if DEBUG 
             services.AddTransient<IMailService, LocalMailService>();
 #else
@@ -54,6 +52,7 @@ namespace CityInfo.API
 
             services.AddScoped<ICityInfoRepository, CityInfoRepository>();
             services.AddScoped<ICityInfoManager, CityInfoManager>();
+            services.AddScoped<IMapper, Mapper>();
 
         }
 
@@ -78,18 +77,15 @@ namespace CityInfo.API
 
             app.UseStatusCodePages();
 
+            var mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
 
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Entities.City, Models.CityWithoutPointsOfInterestDetail>();
-                cfg.CreateMap<Entities.City, Models.CityDetail>();
-                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestDetail>();
-                cfg.CreateMap<Models.PointOfInterestForCreationDetail, Entities.PointOfInterest>();
-                cfg.CreateMap<Models.PointOfInterestForUpdateDetail, Entities.PointOfInterest>();
-                cfg.CreateMap<Entities.PointOfInterest, Models.PointOfInterestForUpdateDetail>();
+                cfg.AddProfile(new MappingProfile());
             });
-
-   
 
             app.UseMvc();
 

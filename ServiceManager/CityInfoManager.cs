@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CityInfo.API.Entities;
 using CityInfo.API.Models;
 using CityInfo.API.Services;
 using System.Collections.Generic;
@@ -23,6 +24,13 @@ namespace CityInfo.API.ServiceManager
             var results = Mapper.Map<IEnumerable<CityWithoutPointsOfInterestDetail>>(cityEntities);
 
             return results;
+        }
+
+        public City GetCity(int cityId, bool includePointsOfInterest)
+        {
+            var result = _cityInfoRepository.GetCity(cityId, includePointsOfInterest);
+
+            return result;
         }
 
 
