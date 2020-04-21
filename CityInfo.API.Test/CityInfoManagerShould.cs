@@ -13,7 +13,7 @@ namespace CityInfo.API.Test
     {
         private List<City> _cityList;
         private City _city;
-        private List<PointOfInterest> _pointOfInterest
+        private List<PointOfInterest> _pointOfInterest;
 
 
         [OneTimeSetUp]

@@ -52,7 +52,6 @@ namespace CityInfo.API
 
             services.AddScoped<ICityInfoRepository, CityInfoRepository>();
             services.AddScoped<ICityInfoManager, CityInfoManager>();
-            services.AddScoped<IMapper, Mapper>();
 
         }
 
@@ -77,10 +76,6 @@ namespace CityInfo.API
 
             app.UseStatusCodePages();
 
-            var mapperConfiguration = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingProfile());
-            });
 
             AutoMapper.Mapper.Initialize(cfg =>
             {
